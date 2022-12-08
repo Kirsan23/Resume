@@ -1,0 +1,53 @@
+@use './variables.scss' as *;
+@import './icons.scss';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  width: 100%;
+  margin: auto;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+*div {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 500;
+  height: 50px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+p,
+li {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+abbr {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}

@@ -1,0 +1,138 @@
+@use '../../../../assets/styles/variables.scss' as *;
+
+.top {
+  min-height: 460px;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  background-color: $black;
+  color: $white;
+  text-decoration: none;
+  transition: color 0.5s, background-color 0.5s;
+
+  & .wrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 555px;
+
+    & .name {
+      font-weight: 300;
+    }
+
+    & .position {
+      font-weight: 200;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 90px;
+        height: 2px;
+        background-color: #fff;
+        animation: 5s 3s stretchToRight infinite forwards alternate ease-in-out;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 35px;
+        right: 0;
+        width: 90px;
+        height: 2px;
+        background-color: #fff;
+        animation: 5s 3s stretchToLeft infinite forwards alternate ease-in-out;
+      }
+
+      @keyframes stretchToLeft {
+        0% {
+          transform: translate(0, 0);
+          width: 90px;
+        }
+
+        50% {
+          transform: translate(0, 0);
+          width: 365px;
+        }
+
+        100% {
+          transform: translate(-365px, 0);
+          width: 0px;
+        }
+      }
+
+      @keyframes stretchToRight {
+        0% {
+          transform: translate(0, 0);
+          width: 90px;
+        }
+
+        50% {
+          transform: translate(0, 0);
+          width: 385px;
+        }
+
+        100% {
+          transform: translate(385px, 0);
+          width: 0px;
+        }
+      }
+    }
+
+    & .contacts {
+      display: flex;
+      flex-direction: column;
+
+      & a {
+        text-decoration: none;
+        cursor: pointer;
+        color: $white;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          @include textHover($white, $black);
+        }
+
+        & .icons {
+          margin-right: 10px;
+          font-size: 16px;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  & .theme_switcher {
+    z-index: 1;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  & .language_switcher {
+    top: 10px;
+    left: 10px;
+  }
+
+  &.dark-mode,
+  &.veryDark-mode {
+    background-color: $darkModeGray;
+  }
+}
+
+@media screen and (max-device-width: 600px) {
+  .top {
+    & .wrapper {
+      width: 100%;
+    }
+  }
+}

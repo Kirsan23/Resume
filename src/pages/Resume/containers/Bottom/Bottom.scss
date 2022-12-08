@@ -1,0 +1,104 @@
+@use '../../../../assets/styles/variables.scss' as *;
+
+.bottom {
+  width: 100%;
+  background-color: $white;
+  position: relative;
+  flex: 1 1 auto;
+  transition: color 0.5s, background-color 0.5s;
+
+  & .wrapper {
+    width: 555px;
+  }
+
+  & .tabs {
+    & .experience {
+      & .title {
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+    }
+
+    & .list {
+      padding-right: 10px;
+
+      &:nth-child(1n + 1) {
+        margin-bottom: 20px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &-item {
+        font-size: 20px;
+        margin-bottom: 10px;
+        border: 5px solid $white;
+        transition: border 0.5s;
+
+        & .place {
+          font-weight: 400;
+        }
+
+        & .description {
+          margin-bottom: 10px;
+        }
+
+        & .date {
+          font-weight: 100;
+          font-size: 12px;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          @include textHover($black, $white);
+          border: 5px solid $black;
+          transition: border 0s;
+        }
+      }
+    }
+
+    & .portfolio {
+      width: 470px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+
+  &.dark-mode,
+  &.veryDark-mode {
+    background-color: $black;
+    color: $white;
+
+    & .tabs {
+      & .list {
+        &-item {
+          border: 5px solid $black;
+          &:hover {
+            @include textHover($darkModeGray, $white);
+            border: 5px solid $darkModeGray;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-device-width: 600px) {
+  .bottom {
+    & .wrapper {
+      width: 100%;
+    }
+
+    & .tabs {
+      & .portfolio {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

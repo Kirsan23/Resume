@@ -1,0 +1,303 @@
+@use '../../assets/styles/variables.scss' as *;
+
+.portfolio_card {
+  font-family: 'Teko';
+  width: 230px;
+  height: 230px;
+  background-color: $white;
+  border: 3px solid #c5c5c5;
+  transition: border 0.5s;
+  position: relative;
+  z-index: 1;
+
+  & .main {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    background: inherit;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.1;
+      transition: opacity 0.5s;
+    }
+  }
+
+  & .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
+    width: 220px;
+    background-color: $black;
+    color: $white;
+    position: absolute;
+    top: 2px;
+    transition: width 2s, height 2s, transform 2s;
+    overflow: hidden;
+    opacity: 0.1;
+    z-index: 1;
+
+    &.focused {
+      width: 240px;
+      opacity: 1;
+
+      &.left_card {
+        transform: translateX(227px);
+      }
+
+      &.right_card {
+        transform: translateX(-227px);
+      }
+    }
+
+    & .name {
+      font-size: 2rem;
+    }
+
+    & .link,
+    & .close_button {
+      color: $white;
+    }
+
+    & .about_button {
+      font-family: 'Teko';
+      color: $black;
+      font-size: 20px;
+      font-weight: 700;
+      background-color: $white;
+      margin-bottom: 1.3rem;
+      transition: scale 0.2s, width 0.2s;
+      width: 60px;
+      border-radius: 10px;
+
+      &:hover {
+        width: 80px;
+      }
+
+      &:active {
+        scale: 0.9;
+      }
+    }
+
+    .languages {
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      border-top: 0.1rem solid $white;
+      border-bottom: 0.1rem solid $white;
+    }
+
+    & .link {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 500;
+      position: relative;
+
+      &::before,
+      &::after {
+        content: '-';
+        position: absolute;
+        transition: transform 1s, opacity 0.5s;
+        opacity: 0;
+      }
+
+      &::before {
+        transform: translateX(0px);
+      }
+
+      &::after {
+        transform: translateX(-7px);
+      }
+
+      &:hover {
+        &::before {
+          transform: translateX(-10px);
+          opacity: 1;
+        }
+
+        &::after {
+          transform: translateX(3px);
+          opacity: 1;
+        }
+      }
+
+      &:active {
+        scale: 0.9;
+
+        &::before {
+          transform: translateX(0px);
+          opacity: 0;
+        }
+
+        &::after {
+          transform: translateX(-7px);
+          opacity: 0;
+        }
+      }
+    }
+
+    & .close_button {
+      position: absolute;
+      background-color: transparent;
+      font-size: 30px;
+      padding: 0;
+      display: flex;
+
+      & span {
+        transition: transform 0.5s;
+        transform: translateX(10px);
+      }
+
+      &:active {
+        & span {
+          transition: transform 1s;
+          transform: translateX(5px);
+        }
+      }
+    }
+
+    &.left_card {
+      left: 0;
+
+      & .close_button {
+        right: 0;
+      }
+    }
+
+    &.right_card {
+      right: 0;
+
+      & .close_button {
+        left: 0;
+        rotate: 180deg;
+      }
+    }
+  }
+
+  &.unlocked {
+    & .main {
+      cursor: pointer;
+    }
+
+    &:hover,
+    &.focused {
+      border: 3px solid $black;
+      z-index: 3;
+
+      & .main {
+        & img {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.blocked {
+    z-index: 0;
+  }
+
+  &:hover {
+    z-index: 1;
+  }
+
+  & .modal {
+    & .title {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    & .paragraph {
+      margin-bottom: 10px;
+
+      &:last-child,
+      &-sub {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.left_card {
+    & .modal {
+      transform: translate(-23px, -400px);
+    }
+  }
+
+  &.right_card {
+    & .modal {
+      transform: translate(-263px, -400px);
+    }
+  }
+
+  &.dark-mode,
+  &.veryDark-mode {
+    border: 3px solid $darkModeGray;
+    &:hover {
+      border: 3px solid $darkModeGray;
+    }
+
+    & .description {
+      background-color: $darkModeGray;
+    }
+
+    & .modal {
+      & .paragraph,
+      & .title {
+        color: $darkModeGray;
+      }
+    }
+  }
+}
+
+@media screen and (max-device-width: 600px) {
+  .portfolio_card {
+    margin-bottom: 0.8rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    & .description {
+      top: 0;
+
+      &.focused {
+        height: 240px;
+        opacity: 1;
+
+        &.left_card {
+          transform: translateY(227px);
+          width: 220px;
+          left: 2px;
+        }
+
+        &.right_card {
+          transform: translateY(227px);
+          width: 220px;
+          right: 2px;
+        }
+
+        &.right_card, &.left_card {
+          & .close_button {
+            left: auto;
+            top: auto;
+            right: auto;
+            bottom: 0;
+            rotate: 90deg;
+          }
+        }
+
+        &.last_card {
+          transform: translateY(-243px);
+
+          & .close_button {
+            left: auto;
+            bottom: auto;
+            top: 0;
+            rotate: 270deg;
+          }
+        }
+      }
+    }
+  }
+}

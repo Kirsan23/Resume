@@ -1,0 +1,59 @@
+.overlay {
+  --cursorX: 50vw;
+  --cursorY: 50vh;
+
+  &::before {
+    content: '';
+    display: block;
+    z-index: 10;
+    transform: translateX(-25%); // ! DON'T KNOW, HOW TO FIX )=
+    width: 100vw;
+    height: 100%;
+    position: fixed;
+    pointer-events: none;
+    background: radial-gradient(
+      circle 10vmax at var(--cursorX) var(--cursorY),
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 80%,
+      rgba(0, 0, 0, 0.99) 100%
+    );
+    animation: 1s flickerTest 2s 2 alternate;
+  }
+
+  @keyframes flickerTest {
+    0%,
+    40%,
+    50%,
+    70% {
+      background: radial-gradient(
+        circle 10vmax at var(--cursorX) var(--cursorY),
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.9) 80%,
+        rgba(0, 0, 0, 0.99) 100%
+      );
+    }
+
+    10%,
+    20%,
+    30%,
+    60%,
+    80%,
+    90%,
+    100% {
+      background: radial-gradient(
+        circle 10vmax at var(--cursorX) var(--cursorY),
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.5) 80%,
+        rgba(0, 0, 0, 0.99) 100%
+      );
+    }
+  }
+}
+
+@media screen and (max-device-width: 600px) {
+  .overlay {
+    &::before {
+      transform: translateX(0); // ! DON'T KNOW, HOW TO FIX )=
+    }
+  }
+}

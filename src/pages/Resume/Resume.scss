@@ -1,0 +1,27 @@
+.resume {
+  width: 1000px;
+  min-height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+
+  animation: levitation 10s 2s infinite alternate;
+}
+
+@keyframes levitation {
+  from {
+    box-shadow: rgb(15, 15, 15) 0 0 15px 0;
+  }
+
+  to {
+    box-shadow: rgb(15, 15, 15) 0 0 5px 0;
+  }
+}
+
+@media screen and (max-device-width: 600px){
+  .resume {
+    width: 100vw;
+  }
+}

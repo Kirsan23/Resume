@@ -1,0 +1,106 @@
+@use '../../../../assets/styles/variables.scss' as *;
+
+.additional {
+  width: 400px;
+  min-height: 96vh;
+  position: absolute;
+  top: 0;
+  right: 45px;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 2vh 0;
+  background-color: $black;
+  color: $white;
+  animation: slide 3s 1;
+  animation-timing-function: ease-out;
+  transition: color 0.5s, background-color 0.5s;
+
+  & .about_me {
+    margin-bottom: 20px;
+    border-bottom: 2px solid $white;
+    height: 40px;
+  }
+
+  & .description {
+    margin-bottom: 20px;
+  }
+
+  & img {
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  & .skills {
+    padding-left: 30px;
+    width: 100%;
+
+    & .title {
+      margin-bottom: 10px;
+      border-bottom: 2px solid $white;
+      height: 40px;
+    }
+
+    & .list {
+      margin-bottom: 10px;
+      list-style-type: square;
+
+      &-item {
+        font-weight: 300;
+
+        & ::marker {
+          font-weight: 400;
+          color: $white;
+          font-size: 1.2em;
+        }
+
+        &:hover {
+          @include textHover($white, $black);
+          list-style-type: none;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  &.dark-mode,
+  &.veryDark-mode {
+    background-color: $darkModeGray;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateY(-1400px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+
+@media screen and (max-device-width: 600px) {
+  .additional {
+    position: relative;
+    right: 0;
+    width: 100%;
+    justify-content: center;
+
+    & .description {
+      margin-bottom: 20px;
+      padding: 0 0.5rem;
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateY(0);
+      }
+  
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
+}

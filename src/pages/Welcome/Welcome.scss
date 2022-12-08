@@ -1,0 +1,89 @@
+@use '../../assets/styles/variables.scss' as *;
+
+.welcome {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+
+  & .border {
+    width: 19vw;
+    height: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.2vw solid;
+    overflow: hidden;
+
+    animation-duration: 2s;
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: backwards;
+
+    & .container {
+      width: 15vw;
+      height: 5vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: $black;
+
+      animation-duration: 2s;
+      animation-name: pulse;
+      animation-iteration-count: infinite;
+      animation-direction: alternate-reverse;
+      animation-fill-mode: backwards;
+      transition: all 400ms cubic-bezier(0.47, 1.64, 0.41, 0.8);
+
+      &:hover {
+        transform: scale(0.9);
+        animation-duration: 2s;
+        animation-name: shake;
+        animation-iteration-count: infinite;
+        animation-direction: alternate-reverse;
+        animation-fill-mode: backwards;
+      }
+    }
+  }
+
+  @keyframes shake {
+    0%,
+    100% {
+      rotate: 0;
+    }
+
+    25% {
+      rotate: 10deg;
+    }
+
+    50% {
+      rotate: -15deg;
+    }
+
+    75% {
+      rotate: 5deg;
+    }
+  }
+
+  @keyframes pulse {
+    from {
+      scale: 1;
+    }
+
+    to {
+      scale: 1.2;
+    }
+  }
+
+  & .typing_text {
+    font-size: 3vw;
+    font-weight: 700;
+    color: #fff;
+  }
+}

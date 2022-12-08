@@ -1,0 +1,84 @@
+@use '../../assets/styles/variables.scss' as *;
+
+.themes_indicators {
+  width: 60px;
+  height: 70px;
+  font-size: 40px;
+  position: relative;
+  overflow: hidden;
+
+  & .icon-sun,
+  & .icon-moon,
+  & .icon-sun1,
+  & .icon-cloud {
+    position: absolute;
+    color: $white;
+    transition: transform 2s, scale 2s, opacity 2s;
+  }
+
+  & .icon-sun {
+    &.light {
+      transform: translate(50%, 0%) rotate(0deg);
+      opacity: 0;
+    }
+
+    &.dark {
+      transform: translate(25%, 100%) rotate(0deg);
+      opacity: 1;
+      scale: 1.2;
+    }
+
+    &.veryDark {
+      transform: translate(25%, 180%) rotate(0deg);
+    }
+  }
+
+  & .icon-sun1 {
+    &.light {
+      transform: translate(50%, 0%) rotate(0deg);
+      opacity: 1;
+    }
+
+    &.dark {
+      transform: translate(25%, 100%) rotate(0deg);
+      scale: 1.2;
+      opacity: 0;
+    }
+
+    &.veryDark {
+      transform: translate(25%, 180%) rotate(0deg);
+    }
+  }
+
+  & .icon-moon {
+    transition: transform 2s;
+
+    &.light {
+      transform: translate(150%, 50%) rotate(270deg);
+    }
+
+    &.dark {
+      transform: translate(150%, 50%) rotate(270deg);
+    }
+
+    &.veryDark {
+      transform: translate(65%, 0%) rotate(270deg);
+    }
+  }
+
+  & .icon-cloud {
+    transition: transform 2s;
+
+    &.light {
+      transform: translate(-110%, 30%);
+    }
+
+    &.dark {
+      transform: translate(-110%, 30%);
+    }
+
+    &.veryDark {
+      transform: translate(0%, 30%);
+    }
+  }
+}

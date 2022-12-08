@@ -1,0 +1,24 @@
+@use '../../assets/styles/variables.scss' as *;
+
+.falling_letters {
+  display: inline-block;
+  transition: transform 0.5s, opacity 1s;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+
+  &-wrapper {
+    overflow: hidden;
+  }
+
+  &.up {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: transform 0s, opacity 0s; // ! TEST
+  }
+
+  &.down {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}

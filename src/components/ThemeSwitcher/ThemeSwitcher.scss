@@ -1,0 +1,262 @@
+@use '../../assets/styles/variables.scss' as *;
+
+.theme_switcher {
+  position: absolute;
+
+  & .buttons-wrapper {
+    position: relative;
+    width: 50px;
+    height: 50px;
+
+    & .light_btn,
+    .dark_btn,
+    .veryDark_btn,
+    .switcher {
+      position: absolute;
+      border: 1px solid $white;
+      width: 14px;
+      height: 14px;
+      background-color: $white;
+      cursor: pointer;
+      transition: background-color 0.5s, scale 0.5s;
+
+      &:hover {
+        scale: 1.5;
+        &::before {
+          content: '';
+          font-size: 10px;
+          font-weight: 900;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+
+    & .light_btn {
+      top: 0;
+
+      &:hover {
+        scale: 1.2;
+        &::before {
+          content: 'L';
+        }
+      }
+    }
+
+    & .dark_btn {
+      bottom: 0;
+      &:hover {
+        scale: 1.2;
+        &::before {
+          content: 'D';
+        }
+      }
+    }
+
+    & .veryDark_btn {
+      bottom: 0px;
+      right: 0;
+      &:hover {
+        scale: 1.2;
+        &::before {
+          content: 'X';
+        }
+      }
+    }
+
+    & .switcher {
+      top: 0px;
+      left: 0px;
+      width: 14px;
+      height: 14px;
+      transition: width 0.5s;
+
+      &:focus {
+        width: 44px;
+      }
+
+      &.light_to_dark {
+        animation-name: light_to_dark;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+
+        @keyframes light_to_dark {
+          0% {
+            height: 14px;
+          }
+
+          50% {
+            height: 44px;
+            transform: translateY(0px);
+          }
+
+          100% {
+            height: 14px;
+            transform: translateY(36px);
+          }
+        }
+      }
+
+      &.light_to_veryDark {
+        animation-name: light_to_veryDark;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+
+        @keyframes light_to_veryDark {
+          0% {
+            height: 14px;
+          }
+
+          25% {
+            height: 44px;
+            transform: translate(0px, 0px);
+          }
+
+          50% {
+            width: 14px;
+            height: 14px;
+            transform: translate(0px, 36px);
+          }
+
+          75% {
+            width: 44px;
+            transform: translate(0px, 36px);
+          }
+
+          100% {
+            width: 14px;
+            transform: translate(36px, 36px);
+          }
+        }
+      }
+
+      &.dark_to_light {
+        animation-name: dark_to_light;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+
+        @keyframes dark_to_light {
+          0% {
+            transform: translateY(36px);
+            height: 14px;
+          }
+
+          50% {
+            transform: translateX(0px);
+            height: 44px;
+          }
+
+          100% {
+            height: 14px;
+          }
+        }
+      }
+
+      &.dark_to_veryDark {
+        animation-name: dark_to_veryDark;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+
+        @keyframes dark_to_veryDark {
+          0% {
+            transform: translate(0px, 36px);
+            width: 14px;
+          }
+
+          50% {
+            width: 44px;
+            transform: translate(0px, 36px);
+          }
+
+          100% {
+            width: 14px;
+            transform: translate(36px, 36px);
+          }
+        }
+      }
+
+      &.veryDark_to_dark {
+        animation-name: veryDark_to_dark;
+        animation-delay: 0s;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+
+        @keyframes veryDark_to_dark {
+          0% {
+            width: 14px;
+            transform: translate(36px, 36px)
+          }
+
+          50% {
+            width: 44px;
+            transform: translate(0px, 36px);
+          }
+
+          100% {
+            transform: translate(0px, 36px);
+            width: 14px;
+          }
+        }
+      }
+
+      &.veryDark_to_light {
+        animation-name: veryDark_to_light;
+        animation-delay: 0s;
+        animation-duration: 2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+
+        @keyframes veryDark_to_light {
+          0% {
+            width: 14px;
+            transform: translate(36px, 36px)
+          }
+
+          25% {
+            width: 44px;
+            transform: translate(0px, 36px);
+          }
+
+          50% {
+            transform: translate(0px, 36px);
+            width: 14px;
+            height: 14px;
+          }
+
+          75% {
+            transform: translate(0px, 0px);
+            height: 44px;
+            width: 14px;
+          }
+
+          100% {
+            transform: translate(0px, 0px);
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  .dark-mode &,
+  .veryDark-mode & {
+    & .light_btn,
+    .dark_btn,
+    .veryDark_btn,
+    .switcher {
+      border: 1px solid $white;
+      background-color: $white;
+    }
+  }
+}
