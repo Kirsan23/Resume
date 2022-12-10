@@ -226,7 +226,7 @@ export const Bottom = () => {
           link: 'https://github.com/Kirsan23/Stage-2',
           description: (
             <Fragment>
-              <h2>Acquaintance with React</h2>
+              <h2 className='title'>Acquaintance with React</h2>
               <p className='paragraph'>
                 One day my mentor told me - "Finish with this layout and let's
                 move on"
@@ -350,7 +350,7 @@ export const Bottom = () => {
           link: 'https://github.com/Kirsan23/Stage-2',
           description: (
             <Fragment>
-              <h2>Знайомство з React</h2>
+              <h2 className='title'>Знайомство з React</h2>
               <p className='paragraph'>
                 Якоїсь миті друг мені сказав - "Закінчуй з цим макетом і підемо
                 далі".

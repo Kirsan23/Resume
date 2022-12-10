@@ -1,16 +1,16 @@
 @use '../../assets/styles/variables.scss' as *;
 
-.theme_switcher {
+.theme_toggle {
   position: absolute;
 
-  & .buttons-wrapper {
+  & .buttons_wrapper {
     position: relative;
     width: 50px;
     height: 50px;
 
-    & .light_btn,
-    .dark_btn,
-    .veryDark_btn,
+    & .light_button,
+    .dark_button,
+    .relevant_for_Ukraine_button,
     .switcher {
       position: absolute;
       border: 1px solid $white;
@@ -21,7 +21,6 @@
       transition: background-color 0.5s, scale 0.5s;
 
       &:hover {
-        scale: 1.5;
         &::before {
           content: '';
           font-size: 10px;
@@ -35,36 +34,17 @@
       }
     }
 
-    & .light_btn {
+    & .light_button {
       top: 0;
-
-      &:hover {
-        scale: 1.2;
-        &::before {
-          content: 'L';
-        }
-      }
     }
 
-    & .dark_btn {
+    & .dark_button {
       bottom: 0;
-      &:hover {
-        scale: 1.2;
-        &::before {
-          content: 'D';
-        }
-      }
     }
 
-    & .veryDark_btn {
+    & .relevant_for_Ukraine_button {
       bottom: 0px;
       right: 0;
-      &:hover {
-        scale: 1.2;
-        &::before {
-          content: 'X';
-        }
-      }
     }
 
     & .switcher {
@@ -79,10 +59,7 @@
       }
 
       &.light_to_dark {
-        animation-name: light_to_dark;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease;
+        animation: light_to_dark 1s ease forwards;
 
         @keyframes light_to_dark {
           0% {
@@ -101,13 +78,10 @@
         }
       }
 
-      &.light_to_veryDark {
-        animation-name: light_to_veryDark;
-        animation-duration: 2s;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease;
+      &.light_to_relevant_for_Ukraine {
+        animation: light_to_relevant_for_Ukraine 2s ease forwards;
 
-        @keyframes light_to_veryDark {
+        @keyframes light_to_relevant_for_Ukraine {
           0% {
             height: 14px;
           }
@@ -136,10 +110,7 @@
       }
 
       &.dark_to_light {
-        animation-name: dark_to_light;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease;
+        animation: dark_to_light 1s ease forwards;
 
         @keyframes dark_to_light {
           0% {
@@ -158,13 +129,10 @@
         }
       }
 
-      &.dark_to_veryDark {
-        animation-name: dark_to_veryDark;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease;
+      &.dark_to_relevant_for_Ukraine {
+        animation: dark_to_relevant_for_Ukraine 1s ease forwards;
 
-        @keyframes dark_to_veryDark {
+        @keyframes dark_to_relevant_for_Ukraine {
           0% {
             transform: translate(0px, 36px);
             width: 14px;
@@ -182,18 +150,13 @@
         }
       }
 
-      &.veryDark_to_dark {
-        animation-name: veryDark_to_dark;
-        animation-delay: 0s;
-        animation-duration: 1s;
-        animation-iteration-count: 1;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease;
+      &.relevant_for_Ukraine_to_dark {
+        animation: relevant_for_Ukraine_to_dark 1s ease forwards;
 
-        @keyframes veryDark_to_dark {
+        @keyframes relevant_for_Ukraine_to_dark {
           0% {
             width: 14px;
-            transform: translate(36px, 36px)
+            transform: translate(36px, 36px);
           }
 
           50% {
@@ -208,18 +171,13 @@
         }
       }
 
-      &.veryDark_to_light {
-        animation-name: veryDark_to_light;
-        animation-delay: 0s;
-        animation-duration: 2s;
-        animation-iteration-count: 1;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease;
+      &.relevant_for_Ukraine_to_light {
+        animation: relevant_for_Ukraine_to_light 2s ease forwards;
 
-        @keyframes veryDark_to_light {
+        @keyframes relevant_for_Ukraine_to_light {
           0% {
             width: 14px;
-            transform: translate(36px, 36px)
+            transform: translate(36px, 36px);
           }
 
           25% {
@@ -250,10 +208,10 @@
   }
 
   .dark-mode &,
-  .veryDark-mode & {
-    & .light_btn,
-    .dark_btn,
-    .veryDark_btn,
+  .relevant_for_Ukraine-mode & {
+    & .light_button,
+    .dark_button,
+    .relevant_for_Ukraine_button,
     .switcher {
       border: 1px solid $white;
       background-color: $white;

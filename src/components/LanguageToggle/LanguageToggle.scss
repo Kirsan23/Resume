@@ -1,0 +1,36 @@
+@use '../../assets/styles/variables.scss' as *;
+
+.language_toggle {
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  height: 35px;
+  padding: 0;
+
+  :nth-child(1) {
+    margin-right: 0.2rem;
+  }
+
+  & .enabled,
+  .disabled {
+    font-family: 'Teko';
+    font-weight: 700;
+    font-size: 1rem;
+    color: $black;
+    height: 35px;
+    padding: 0 0.1rem;
+    transition: transform 0.5s;
+    background-color: $white;
+    display: flex;
+    align-items: end;
+  }
+
+  & .enabled {
+    transform: translateY(0);
+  }
+
+  & .disabled {
+    transform: translateY(-1rem);
+  }
+}

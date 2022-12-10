@@ -1,9 +1,11 @@
 import { useContext, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeContext } from '../../../../components/ThemeContext';
-import { LanguageSwitchButton } from '../../../../components/LanguageSwitchButton';
+import { LanguageToggle } from '../../../../components/LanguageToggle';
 import { ThemeSwitcher } from '../../../../components/ThemeSwitcher';
 import './Top.scss';
+
+import { ThemesIndicator } from '../../../../components/ThemesIndicator'
 
 export const Top = () => {
   const CONTACTS = useRef([
@@ -39,10 +41,11 @@ export const Top = () => {
   return (
     <section className={`top ${theme}-mode`}>
       <div className='wrapper'>
-        <LanguageSwitchButton />
+        <LanguageToggle />
         <ThemeSwitcher />
         <h1 className='name'>{PERSON[language].name}</h1>
         <h3 className='position'>{PERSON[language].position}</h3>
+        {/* <ThemesIndicator theme={theme} /> */}
         <div className='contacts'>
           {CONTACTS.map(({ name, icon, href }) => (
             <a key={name} href={href}>

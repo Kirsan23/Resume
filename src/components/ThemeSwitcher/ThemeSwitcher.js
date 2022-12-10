@@ -1,36 +1,30 @@
 import { useContext, useState } from 'react';
 import { ThemeContext, THEMES } from '../ThemeContext';
-import { ThemesIndicator } from '../ThemesIndicator';
+import { clickHandler } from '../../utils/clickHandler';
 import './ThemeSwitcher.scss';
 
 export const ThemeSwitcher = () => {
-  const { toggleTheme, theme } = useContext(ThemeContext);
+  const { switchTheme, theme } = useContext(ThemeContext);
   const [prevTheme, setPrevTheme] = useState(theme);
 
-  const handleClick = (selectedTheme) => {
-    if (selectedTheme === theme) return;
-
+  const changeTheme = (selectedTheme) => {
     setPrevTheme(theme);
-    toggleTheme(selectedTheme);
+    switchTheme(selectedTheme);
   };
 
   return (
-    <div className='theme_switcher'>
-      <ThemesIndicator theme={theme} />
-      <div className='buttons-wrapper'>
+    <div className='theme_toggle'>
+      <div className='buttons_wrapper'>
         <div className={`switcher ${prevTheme}_to_${theme}`} />
-        <button
-          className={`button light_btn`}
-          onClick={() => handleClick(THEMES.light)}
-        ></button>
-        <button
-          className={`button dark_btn`}
-          onClick={() => handleClick(THEMES.dark)}
-        ></button>
-        <button
-          className='button veryDark_btn'
-          onClick={() => handleClick(THEMES.veryDark)}
-        ></button>
+        {THEMES.map((themeName) => (
+          <button
+            key={themeName}
+            className={`${themeName}_button`}
+            onClick={() =>
+              clickHandler(changeTheme, themeName === theme, themeName)
+            }
+          ></button>
+        ))}
       </div>
     </div>
   );

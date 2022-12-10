@@ -1,1 +1,0 @@
-export { LanguageSwitchButton } from './LanguageSwitchButton';

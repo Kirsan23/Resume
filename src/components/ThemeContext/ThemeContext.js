@@ -1,20 +1,20 @@
 import { createContext, useState, useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 export const ThemeContext = createContext(localStorage.getItem('theme'));
-export const THEMES = {
-  light: 'light',
-  dark: 'dark',
-  veryDark: 'veryDark',
-};
+// export const THEMES = {
+//   light: 'light',
+//   dark: 'dark',
+//   veryDark: 'veryDark',
+// };
+export const THEMES = ['light', 'dark', 'relevant_for_Ukraine'];
 const setThemeInLocalStorage = (theme) => {
   localStorage.setItem('theme', theme);
 };
 
 export const ThemeProvider = (props) => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || THEMES.light);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || THEMES[0]);
   const { children } = props;
-  const toggleTheme = useCallback((theme) => {
+  const switchTheme = useCallback((theme) => {
     setTheme((prevState) => (prevState !== theme ? theme : prevState));
   }, []);
 
@@ -23,12 +23,8 @@ export const ThemeProvider = (props) => {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, switchTheme }}>
       {children}
     </ThemeContext.Provider>
   );
-};
-
-ThemeContext.PropTypes = {
-  theme: PropTypes.oneOf(['light', 'dark', 'veryDark']),
 };

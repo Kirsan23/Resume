@@ -13,7 +13,7 @@ export const Resume = () => {
 
   return (
     <section className={`resume ${theme}-mode`}>
-      {theme === THEMES.veryDark && <Overlay />}
+      {theme === THEMES[2] && <Overlay />}
       <Top />
       <Additional />
       <Bottom />

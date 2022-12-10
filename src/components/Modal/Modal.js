@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { clickHandler, outsideClickHandler } from '../../utils';
-import { ThemeContext } from '../../components/ThemeContext';
 import './Modal.scss';
 
 export const Modal = (props) => {
@@ -10,9 +9,9 @@ export const Modal = (props) => {
 
   const ref = useRef(null);
 
-  const closed = () => onClose(false);
+  const close = () => onClose(false);
   const notState = () => setIsOpened(!isOpened);
-  const outsideClick = (event) => outsideClickHandler(ref, event, (button ? notState : closed));
+  const outsideClick = (event) => outsideClickHandler(ref, event, (button ? notState : close));
 
   useEffect(() => {
     if (isOpen || isOpened) {

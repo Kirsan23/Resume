@@ -1,5 +1,5 @@
-export const clickHandler = (callback, brake) => {
-  if (brake) return
+export const clickHandler = (callback, brake = null, callbackArguments = null) => {
+  if (brake) return;
 
-  callback()
-}
+  callback(callbackArguments);
+};

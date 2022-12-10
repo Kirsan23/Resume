@@ -11,27 +11,24 @@ import './PortfolioCard.scss';
 export const PortfolioCard = (props) => {
   const { img, name, languages, link, description, index, length, isBlocked } = props;
 
-  const [isFocused, setIsFocused] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [opened, setOpened] = useState(false);
 
   const ref = useRef(null);
   const dispatch = useDispatch();
   const { theme } = useContext(ThemeContext);
 
-  const unfocus = () => setIsFocused(!isFocused);
+  const unfocus = () => setFocused(!focused);
   const outsideClick = (event) => outsideClickHandler(ref, event, unfocus);
   const insideClickHandler = () => {
-    if (isFocused) return;
+    if (focused) return;
 
-    setIsFocused(!isFocused);
+    setFocused(!focused);
     dispatch(blocked(true, index));
   };
 
-  console.log(`CARD WITH INDEX ${index} WAS RENDERED`); // TODO: REMOVE!!!
-  console.log(length)
-
   useEffect(() => {
-    if (isFocused) {
+    if (focused) {
       document.addEventListener('click', outsideClick, true);
       let timer = 0;
 
@@ -49,33 +46,33 @@ export const PortfolioCard = (props) => {
         setTimeout(dispatch, timer, blocked(false, index));
       };
     }
-  }, [isFocused]);
+  }, [focused]);
 
   return (
     <Fragment>
       <div
         ref={ref}
         onClick={isBlocked ? null : () => insideClickHandler()}
-        className={`portfolio_card ${isFocused ? 'focused' : 'unfocused'} ${
+        className={`portfolio_card ${focused ? 'focused' : 'unfocused'} ${
           isBlocked ? 'blocked' : 'unlocked'
         } ${
           index === 0 || !(index % 2) ? 'left_card' : 'right_card'
         } ${theme}-mode`}
       >
         <div
-          className={`description ${isFocused ? 'focused' : 'unfocused'} ${
+          className={`description ${focused ? 'focused' : 'unfocused'} ${
             index === 0 || !(index % 2) ? 'left_card' : 'right_card'
           } ${index === length - 1? 'last_card' : ''}`}
         >
           <FallingLetters
-            activated={isFocused ? true : false}
+            activated={focused ? true : false}
             delay={200}
             className='name'
           >
             {name}
           </FallingLetters>
           <p className='languages'>{languages}</p>
-          <button className='about_button' onClick={() => setIsOpen(true)}>
+          <button className='about_button' onClick={() => setOpened(true)}>
             About
           </button>
           <a className='link' href={link}>
@@ -83,7 +80,7 @@ export const PortfolioCard = (props) => {
           </a>
           <button
             className='close_button'
-            onClick={() => clickHandler(unfocus, !isFocused)}
+            onClick={() => clickHandler(unfocus, !focused)}
           >
             <span className='icon-arrow_back' />
           </button>
@@ -91,7 +88,7 @@ export const PortfolioCard = (props) => {
         <div className='main'>
           <img src={img} alt='pet project' />
         </div>
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <Modal isOpen={opened} onClose={() => setOpened(false)}>
           {description}
         </Modal>
       </div>

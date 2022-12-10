@@ -3,9 +3,9 @@ import {
   switchedToEng,
   switchedToUa,
 } from '../../redux/actions/languageSwitcher';
-import './LanguageSwitchButton.scss';
+import './LanguageToggle.scss';
 
-export const LanguageSwitchButton = () => {
+export const LanguageToggle = () => {
   const dispatch = useDispatch();
   const language = useSelector((state) => state.languages.language);
 
@@ -17,7 +17,7 @@ export const LanguageSwitchButton = () => {
   };
 
   return (
-    <div className='language_switcher'>
+    <div className='language_toggle'>
       <button
         className={language === 'ua' ? 'disabled' : 'enabled'}
         onClick={() => switchToEng()}

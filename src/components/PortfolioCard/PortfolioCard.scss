@@ -208,6 +208,8 @@
     & .title {
       font-size: 2rem;
       font-weight: 600;
+      height: auto;
+      margin-bottom: 1rem;
     }
 
     & .paragraph {
@@ -297,6 +299,20 @@
             rotate: 270deg;
           }
         }
+      }
+    }
+
+    &.right_card {
+      & .modal {
+        width: 150%;
+        transform: translate(-65px, -1100px);
+      }
+    }
+
+    &.left_card {
+      & .modal {
+        width: 150%;
+        transform: translate(-65px, -691px);
       }
     }
   }

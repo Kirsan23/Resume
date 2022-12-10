@@ -112,14 +112,14 @@
     }
   }
 
-  & .theme_switcher {
+  & .theme_toggle {
     z-index: 1;
     bottom: 10px;
     left: 10px;
   }
 
-  & .language_switcher {
-    top: 10px;
+  & .language_toggle {
+    top: 0;
     left: 10px;
   }
 
