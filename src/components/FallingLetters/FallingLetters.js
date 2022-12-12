@@ -36,7 +36,7 @@ export const FallingLetters = (props) => {
   }, [index || started]);
 
   return (
-    <div className={`falling_letters-wrapper ${activated} ${started}`}>
+    <div className={`falling_letters-wrapper`}>
       {arrayFromSting.map((char, i) => (
         <span
           key={i}

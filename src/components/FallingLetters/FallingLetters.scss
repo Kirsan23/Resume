@@ -14,7 +14,6 @@
   &.up {
     transform: translateY(-100px);
     opacity: 0;
-    transition: transform 0s, opacity 0s; // ! TEST
   }
 
   &.down {

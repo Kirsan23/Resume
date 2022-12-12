@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { clickHandler } from '../../utils';
 import {
   switchedToEng,
   switchedToUa,
@@ -20,13 +21,13 @@ export const LanguageToggle = () => {
     <div className='language_toggle'>
       <button
         className={language === 'ua' ? 'disabled' : 'enabled'}
-        onClick={() => switchToEng()}
+        onClick={() => clickHandler(switchToEng)}
       >
         ENG
       </button>
       <button
         className={language === 'eng' ? 'disabled' : 'enabled'}
-        onClick={() => switchToUa()}
+        onClick={() => clickHandler(switchToUa)}
       >
         UA
       </button>

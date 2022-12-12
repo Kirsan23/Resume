@@ -10,44 +10,27 @@
     transform: translateY(-3px);
 
     & .tabs-button {
-      border: none;
       background-color: $black;
       color: $white;
       padding: 5px 10px 5px 20px;
-      cursor: pointer;
       font-weight: 800;
       border: 3px solid $black;
       transform: translateX(-10px);
       transition: transform 0.5s, color 0.5s, background-color 0.5s;
 
-      &:hover {
-        transform: translateX(-3px);
-      }
-
-      &:active {
-        border: 3px solid $black;
+      &:active, &:focus, &.activated {
         background-color: $white;
         color: $black;
       }
 
-      &:focus {
+      &:focus, &:hover {
         transform: translateX(-3px);
-        border: 3px solid $black;
-        background-color: $white;
-        color: $black;
       }
 
       &.activated {
         transform: translateX(-10px);
-        border: 3px solid $black;
-        background-color: $white;
-        color: $black;
 
-        &:hover {
-          transform: translateX(-3px);
-        }
-
-        &:focus {
+        &:hover, &:focus {
           transform: translateX(-3px);
         }
       }
@@ -66,7 +49,7 @@
       flex-direction: column;
       justify-content: flex-start;
       padding-left: 10px;
-      padding-top: 20px;
+      padding: 20px 0;
 
       &.hidden {
         display: none;
@@ -90,10 +73,6 @@
       &.activated {
         transform: translateX(-10px);
         border: 3px solid $darkModeGray;
-
-        &:focus {
-          transform: translateX(-3px);
-        }
       }
     }
   }
@@ -102,15 +81,18 @@
 @media screen and (max-device-width: 600px) {
   .tabs {
     & .tab_list {
+      width: 10%;
       & .tabs-button {
         margin-bottom: -2px;
         display: flex;
       }
     }
     & .tab_panel {
-      width: 75%;
+      width: 90%;
       & .tab {
         width: 100%;
+        padding-left: 0;
+        padding-right: 9px;
       }
     }
   }

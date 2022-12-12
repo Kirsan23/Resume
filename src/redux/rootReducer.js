@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
-import { languageReducer } from './reducers/languageReducer';
-import { portfolioCardReducer } from './reducers/PortfolioCardReducer'
+import { portfolioCardReducer, languageReducer } from './reducers/index';
 
 
 export const rootReducer = combineReducers({

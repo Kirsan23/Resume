@@ -4,9 +4,8 @@ import { Additional } from './containers/Additional';
 import { useContext } from 'react';
 import { ThemeContext } from '../../components/ThemeContext';
 import { THEMES } from '../../components/ThemeContext';
-import './Resume.scss';
-
 import { Overlay } from '../../components/Overlay';
+import './Resume.scss';
 
 export const Resume = () => {
   const { theme } = useContext(ThemeContext);

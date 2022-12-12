@@ -15,7 +15,6 @@ const setLanguageInLocalStorage = (language) => {
 };
 
 export const languageReducer = (state = defaultLanguage, action) => {
-
   switch (action.type) {
     case 'eng':
       setLanguageInLocalStorage('eng');

@@ -1,7 +1,7 @@
-import { useState, useRef, Fragment, useEffect, useContext } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from '../Modal';
-import { blocked } from '../../redux/actions/PortfolioCardBlocker';
+import { blocked } from '../../redux/actions/portfolioCardBlocker';
 import { useDispatch } from 'react-redux';
 import { clickHandler, outsideClickHandler } from '../../utils';
 import { FallingLetters } from '../FallingLetters';
@@ -49,7 +49,6 @@ export const PortfolioCard = (props) => {
   }, [focused]);
 
   return (
-    <Fragment>
       <div
         ref={ref}
         onClick={isBlocked ? null : () => insideClickHandler()}
@@ -66,7 +65,7 @@ export const PortfolioCard = (props) => {
         >
           <FallingLetters
             activated={focused ? true : false}
-            delay={200}
+            delay={1000}
             className='name'
           >
             {name}
@@ -86,13 +85,12 @@ export const PortfolioCard = (props) => {
           </button>
         </div>
         <div className='main'>
-          <img src={img} alt='pet project' />
+          <img src={img} className='main' alt='pet project' />
         </div>
-        <Modal isOpen={opened} onClose={() => setOpened(false)}>
+        {opened && <Modal isOpen={opened} onClose={() => setOpened(false)}>
           {description}
-        </Modal>
+        </Modal>}
       </div>
-    </Fragment>
   );
 };
 
