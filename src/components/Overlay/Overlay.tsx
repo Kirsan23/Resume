@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Overlay.scss';
 
 export const Overlay = () => {
   const [globalCoords, setGlobalCoords] = useState({ x: 0, y: 0 });
-  const rootElement = document.getElementById('root');
+  const rootElement = document.getElementById('root') as HTMLElement;
 
   rootElement.classList.add('overlay');
   rootElement.style.setProperty('--cursorX', globalCoords.x + 'px');
   rootElement.style.setProperty('--cursorY', globalCoords.y + 'px');
 
   useEffect(() => {
-    const handleCursorMove = (event) => {
+    const handleCursorMove = (event: any) => {
       setGlobalCoords({
         x: event.clientX || 1 || event.touches[0].clientX,
         y: event.clientY || 1 || event.touches[0].clientY,
@@ -25,4 +25,6 @@ export const Overlay = () => {
       rootElement.removeAttribute('style');
     };
   }, []);
+
+  return <></>
 };

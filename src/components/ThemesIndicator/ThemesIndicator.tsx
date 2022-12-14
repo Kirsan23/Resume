@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import './ThemesIndicator.scss';
 
-export const ThemesIndicator = (props) => {
+export const ThemesIndicator = (props: any) => {
   const { theme } = props;
   const THEMES_ICONS = useRef([
     { name: 'sun', icon: 'icon-sun1' },

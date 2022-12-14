@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-export const TypingText = (props) => {
-  const { children, component = 'h2', interval = 100, className=null } = props;
+export const TypingText = (props: any) => {
+  const { children, component = 'h2', interval = 100, className = '' } = props;
   const [string, setString] = useState('');
   const Tag = component;
   const index = useRef(0);
@@ -24,8 +24,8 @@ export const TypingText = (props) => {
   );
 };
 
-TypingText.propTypes = {
-  interval: PropTypes.number,
-  tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span']),
-  className: PropTypes.string,
-};
+// TypingText.propTypes = {
+//   interval: PropTypes.number,
+//   tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span']),
+//   className: PropTypes.string,
+// };

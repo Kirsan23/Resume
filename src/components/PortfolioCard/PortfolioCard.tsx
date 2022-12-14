@@ -1,14 +1,15 @@
-import { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from '../Modal';
 import { blocked } from '../../redux/actions/portfolioCardBlocker';
 import { useDispatch } from 'react-redux';
-import { clickHandler, outsideClickHandler } from '../../utils';
+import { outsideClickHandler } from '../../utils';
+import { clickHandler } from '../../utils';
 import { FallingLetters } from '../FallingLetters';
-import { ThemeContext } from '../../components/ThemeContext';
+import { ThemeContext } from '../ThemeContext';
 import './PortfolioCard.scss';
 
-export const PortfolioCard = (props) => {
+export const PortfolioCard = (props: any) => {
   const { img, name, languages, link, description, index, length, isBlocked } = props;
 
   const [focused, setFocused] = useState(false);
@@ -19,7 +20,7 @@ export const PortfolioCard = (props) => {
   const { theme } = useContext(ThemeContext);
 
   const unfocus = () => setFocused(!focused);
-  const outsideClick = (event) => outsideClickHandler(ref, event, unfocus);
+  const outsideClick = (event: any) => outsideClickHandler(ref, event, unfocus);
   const insideClickHandler = () => {
     if (focused) return;
 
@@ -51,7 +52,7 @@ export const PortfolioCard = (props) => {
   return (
       <div
         ref={ref}
-        onClick={isBlocked ? null : () => insideClickHandler()}
+        onClick={isBlocked ? undefined : () => insideClickHandler()}
         className={`portfolio_card ${focused ? 'focused' : 'unfocused'} ${
           isBlocked ? 'blocked' : 'unlocked'
         } ${
@@ -94,12 +95,12 @@ export const PortfolioCard = (props) => {
   );
 };
 
-PortfolioCard.propTypes = {
-  name: PropTypes.string,
-  img: PropTypes.string,
-  languages: PropTypes.string,
-  link: PropTypes.string,
-  description: PropTypes.element,
-  index: PropTypes.number,
-  isBlocked: PropTypes.bool,
-};
+// PortfolioCard.propTypes = {
+//   name: PropTypes.string,
+//   img: PropTypes.string,
+//   languages: PropTypes.string,
+//   link: PropTypes.string,
+//   description: PropTypes.element,
+//   index: PropTypes.number,
+//   isBlocked: PropTypes.bool,
+// };

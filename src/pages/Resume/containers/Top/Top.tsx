@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeContext } from '../../../../components/ThemeContext';
 import { LanguageToggle } from '../../../../components/LanguageToggle';
@@ -8,7 +8,7 @@ import './Top.scss';
 import { ThemesIndicator } from '../../../../components/ThemesIndicator'
 
 export const Top = () => {
-  const CONTACTS = useRef([
+  const CONTACTS: any = useRef([
     { name: 'Phone', icon: 'icon-phone', href: 'tel: +380958654034' },
     {
       name: 'LinkedIn',
@@ -27,7 +27,7 @@ export const Top = () => {
       href: 'https://github.com/Kirsan23',
     },
   ]).current;
-  const PERSON = useRef({
+  const PERSON: any = useRef({
     eng: {
       name: 'KYRYLO BEREHOVYI',
       position: 'Front-End Developer',
@@ -35,7 +35,7 @@ export const Top = () => {
     ua: { name: 'КИРИЛО БЕРЕГОВИЙ', position: 'Front-End Розробник' },
   }).current;
 
-  const language = useSelector((state) => state.languages.language);
+  const language = useSelector((state: any) => state.languages.language);
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -47,7 +47,7 @@ export const Top = () => {
         <h3 className='position'>{PERSON[language].position}</h3>
         {/* <ThemesIndicator theme={theme} /> */}
         <div className='contacts'>
-          {CONTACTS.map(({ name, icon, href }) => (
+          {CONTACTS.map(({ name, icon, href }: { name: string, icon: string, href: string }) => (
             <a key={name} href={href}>
               <span className={`${icon} icons`} />
               {name}

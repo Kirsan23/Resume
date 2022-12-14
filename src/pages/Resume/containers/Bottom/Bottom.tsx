@@ -3,11 +3,11 @@ import { Tabs } from '../../../../components/Tabs';
 import { ThemeContext } from '../../../../components/ThemeContext';
 import { PortfolioCard } from '../../../../components/PortfolioCard';
 import { nanoid } from 'nanoid';
-import { Fragment, useContext, useRef } from 'react';
+import React, { Fragment, useContext, useRef } from 'react';
 import './Bottom.scss';
 
 export const Bottom = () => {
-  const EXPERIENCE = useRef({
+  const EXPERIENCE: any = useRef({
     eng: {
       title: 'EXPERIENCE',
       data: [
@@ -120,7 +120,7 @@ export const Bottom = () => {
       ],
     },
   }).current;
-  const GOALS = useRef({
+  const GOALS: any = useRef({
     eng: {
       title: 'GOALS',
       data: [
@@ -161,7 +161,7 @@ export const Bottom = () => {
       ],
     },
   }).current;
-  const PORTFOLIO = useRef({
+  const PORTFOLIO: any = useRef({
     eng: {
       title: 'PORTFOLIO',
       data: [
@@ -411,7 +411,7 @@ export const Bottom = () => {
       ],
     },
   }).current;
-  const LANGUAGES = useRef({
+  const LANGUAGES: any = useRef({
     eng: {
       title: 'LANGUAGES',
       data: [
@@ -429,9 +429,11 @@ export const Bottom = () => {
       ],
     },
   }).current;
-  const language = useSelector((state) => state.languages.language);
+  const language = useSelector((state: any) => state.languages.language);
   const { theme } = useContext(ThemeContext);
-  const isBlocked = useSelector((state) => state.portfolioCardsState.blocked);
+  const isBlocked = useSelector(
+    (state: any) => state.portfolioCardsState.blocked
+  );
 
   return (
     <section className={`bottom ${theme}-mode`}>
@@ -445,38 +447,68 @@ export const Bottom = () => {
           ]}
         >
           <div className='experience'>
-            {EXPERIENCE[language].data.map(({ subData, subtitle }) => (
-              <Fragment key={subtitle}>
-                <h2 className='title'>{subtitle}</h2>
-                <ul className='list'>
-                  {subData.map(({ id, place, description, date }) => (
-                    <li key={id} className='list-item'>
-                      <h3 className='place'>{place}</h3>
-                      <p className='description'>{description}</p>
-                      <p className='date'>{date}</p>
-                    </li>
-                  ))}
-                </ul>
-              </Fragment>
-            ))}
+            {EXPERIENCE[language].data.map(
+              ({ subtitle, subData }: { subtitle: string; subData: [] }) => (
+                <Fragment key={subtitle}>
+                  <h2 className='title'>{subtitle}</h2>
+                  <ul className='list'>
+                    {subData.map(
+                      ({
+                        id,
+                        place,
+                        description,
+                        date,
+                      }: {
+                        id: number | string;
+                        place: string;
+                        description: string;
+                        date: string;
+                      }) => (
+                        <li key={id} className='list-item'>
+                          <h3 className='place'>{place}</h3>
+                          <p className='description'>{description}</p>
+                          <p className='date'>{date}</p>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </Fragment>
+              )
+            )}
           </div>
           <ul className='list'>
-            {GOALS[language].data.map(({ id, description }) => (
-              <li key={id} className='list-item'>
-                {description}
-              </li>
-            ))}
+            {GOALS[language].data.map(
+              ({
+                id,
+                description,
+              }: {
+                id: number | string;
+                description: string;
+              }) => (
+                <li key={id} className='list-item'>
+                  {description}
+                </li>
+              )
+            )}
           </ul>
           <ul className='list'>
-            {LANGUAGES[language].data.map(({ id, description }) => (
-              <li key={id} className='list-item'>
-                {description}
-              </li>
-            ))}
+            {LANGUAGES[language].data.map(
+              ({
+                id,
+                description,
+              }: {
+                id: number | string;
+                description: string;
+              }) => (
+                <li key={id} className='list-item'>
+                  {description}
+                </li>
+              )
+            )}
           </ul>
           <div className='portfolio'>
             {PORTFOLIO[language].data.map(
-              ({ id, name, img, link, description, languages }, index) => (
+              ({ id, name, img, link, description, languages }: {id: number | string, name: string, img: string, link: string, description: string, languages: string}, index: number) => (
                 <PortfolioCard
                   key={id}
                   name={name}

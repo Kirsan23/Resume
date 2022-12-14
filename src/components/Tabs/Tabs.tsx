@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
-import { useState, useContext } from 'react';
-import { ThemeContext } from '../../components/ThemeContext';
-import { clickHandler } from '../../utils';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from '../ThemeContext';
 import './Tabs.scss';
 
-export const Tabs = (props) => {
+export const Tabs = (props: any) => {
   const { titles, className = '', children } = props;
   const { theme } = useContext(ThemeContext);
 
-  const addIds = (array, copyId = null) => {
+  const addIds = (array: [], copyId? : any) => {
     return array.map((item, index) => ({
       id: copyId ? copyId[index].id : index + 1,
       data: item,
@@ -28,7 +27,7 @@ export const Tabs = (props) => {
             className={`tabs-button ${
               activeId === id ? 'activated' : 'disabled'
             }`}
-            onClick={() => clickHandler(setActiveId, null, id)}
+            onClick={() => setActiveId(id)}
           >
             <span className='vertical_text'>{data}</span>
           </button>
@@ -48,7 +47,7 @@ export const Tabs = (props) => {
   );
 };
 
-Tabs.propTypes = {
-  titles: PropTypes.arrayOf(PropTypes.string),
-  className: PropTypes.string,
-};
+// Tabs.propTypes = {
+//   titles: PropTypes.arrayOf(PropTypes.string),
+//   className: PropTypes.string,
+// };

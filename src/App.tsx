@@ -1,3 +1,4 @@
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Welcome } from './pages/Welcome';
 import { Resume } from './pages/Resume';

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Top } from './containers/Top';
 import { Bottom } from './containers/Bottom';
 import { Additional } from './containers/Additional';

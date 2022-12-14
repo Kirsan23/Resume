@@ -1,19 +1,19 @@
-import { useState, useEffect, useRef, Fragment } from 'react';
+import React, { useState, useEffect, useRef, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { clickHandler, outsideClickHandler } from '../../utils';
 import { createPortal } from 'react-dom';
 import './Modal.scss';
 
-export const Modal = (props) => {
+export const Modal = (props: any) => {
   const { children, button, isOpen, onClose } = props;
   const [isOpened, setIsOpened] = useState(false);
 
   const ref = useRef(null);
-  const destinationElement = document.querySelector('.resume');
+  const destinationElement = document.querySelector('.resume')!;
 
   const close = () => onClose(false);
   const notState = () => setIsOpened(!isOpened);
-  const outsideClick = (event) => {
+  const outsideClick = (event: any) => {
     outsideClickHandler(ref, event, button ? notState : close);
   };
 

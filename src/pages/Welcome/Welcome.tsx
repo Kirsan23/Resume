@@ -1,3 +1,4 @@
+import React from 'react'
 import { TypingText } from '../../components/TypingText';
 import './Welcome.scss';
 

@@ -1,11 +1,11 @@
-import { useRef, Fragment, useContext } from 'react';
+import React, { useRef, Fragment, useContext } from 'react';
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 import { ThemeContext } from '../../../../components/ThemeContext';
 import './Additional.scss';
 
 export const Additional = () => {
-  const SKILLS = useRef({
+  const SKILLS: any = useRef({
     eng: {
       data: [
         {
@@ -93,7 +93,7 @@ export const Additional = () => {
       ],
     },
   }).current;
-  const ABOUT_ME = useRef({
+  const ABOUT_ME: any = useRef({
     eng: {
       title: 'ABOUT ME',
       description:
@@ -106,7 +106,7 @@ export const Additional = () => {
     },
   }).current;
 
-  const language = useSelector((state) => state.languages.language);
+  const language = useSelector((state: any) => state.languages.language);
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -115,7 +115,7 @@ export const Additional = () => {
       <p className='description'>{ABOUT_ME[language].description}</p>
       <img src={require('../../../../img/photo.jpg')} alt='It`s me' />
       <div className='skills'>
-        {SKILLS[language].data.map(({ subtitle, subData }) => (
+        {SKILLS[language].data.map(({ subtitle, subData }: {subtitle: string, subData: []}) => (
           <Fragment key={subtitle}>
             <h3 className='title'>{subtitle}</h3>
             <ul className='list'>

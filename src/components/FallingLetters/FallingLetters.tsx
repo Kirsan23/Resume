@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './FallingLetters.scss';
 
 // TODO: try to rework (string + span for one char)
 
-export const FallingLetters = (props) => {
+export const FallingLetters = (props: any) => {
   const {
     children,
     interval = 100,
@@ -37,7 +37,7 @@ export const FallingLetters = (props) => {
 
   return (
     <div className={`falling_letters-wrapper`}>
-      {arrayFromSting.map((char, i) => (
+      {arrayFromSting.map((char: any, i: number) => (
         <span
           key={i}
           className={`${className} falling_letters ${
@@ -52,9 +52,9 @@ export const FallingLetters = (props) => {
   );
 };
 
-FallingLetters.propTypes = {
-  activated: PropTypes.bool,
-  interval: PropTypes.number,
-  className: PropTypes.string,
-  delay: PropTypes.number,
-};
+// FallingLetters.propTypes = {
+//   activated: PropTypes.bool,
+//   interval: PropTypes.number,
+//   className: PropTypes.string,
+//   delay: PropTypes.number,
+// };

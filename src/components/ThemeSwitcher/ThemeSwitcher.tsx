@@ -1,13 +1,13 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ThemeContext, THEMES } from '../ThemeContext';
-import { clickHandler } from '../../utils/clickHandler';
+import { clickHandler } from '../../utils';
 import './ThemeSwitcher.scss';
 
 export const ThemeSwitcher = () => {
   const { switchTheme, theme } = useContext(ThemeContext);
   const [prevTheme, setPrevTheme] = useState(theme);
 
-  const changeTheme = (selectedTheme) => {
+  const changeTheme = (selectedTheme: string) => {
     setPrevTheme(theme);
     switchTheme(selectedTheme);
   };
@@ -16,7 +16,7 @@ export const ThemeSwitcher = () => {
     <div className='theme_toggle'>
       <div className='buttons_wrapper'>
         <div className={`switcher ${prevTheme}_to_${theme}`} />
-        {THEMES.map((themeName) => (
+        {THEMES.map((themeName: string) => (
           <button
             key={themeName}
             className={`${themeName}_button`}

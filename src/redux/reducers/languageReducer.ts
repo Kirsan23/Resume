@@ -10,11 +10,11 @@ const localStorageLanguage = localStorage.getItem('language') || userLocale();
 const defaultLanguage = {
   language: localStorageLanguage,
 };
-const setLanguageInLocalStorage = (language) => {
+const setLanguageInLocalStorage = (language: string) => {
   localStorage.setItem('language', language);
 };
 
-export const languageReducer = (state = defaultLanguage, action) => {
+export const languageReducer = (state = defaultLanguage, action: any) => {
   switch (action.type) {
     case 'eng':
       setLanguageInLocalStorage('eng');

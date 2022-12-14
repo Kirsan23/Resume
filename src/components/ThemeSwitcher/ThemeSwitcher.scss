@@ -10,7 +10,7 @@
 
     & .light_button,
     .dark_button,
-    .relevant_for_Ukraine_button,
+    .blackout_button,
     .switcher {
       position: absolute;
       border: 1px solid $white;
@@ -42,7 +42,7 @@
       bottom: 0;
     }
 
-    & .relevant_for_Ukraine_button {
+    & .blackout_button {
       bottom: 0px;
       right: 0;
     }
@@ -78,10 +78,10 @@
         }
       }
 
-      &.light_to_relevant_for_Ukraine {
-        animation: light_to_relevant_for_Ukraine 2s ease forwards;
+      &.light_to_blackout {
+        animation: light_to_blackout 2s ease forwards;
 
-        @keyframes light_to_relevant_for_Ukraine {
+        @keyframes light_to_blackout {
           0% {
             height: 14px;
           }
@@ -129,10 +129,10 @@
         }
       }
 
-      &.dark_to_relevant_for_Ukraine {
-        animation: dark_to_relevant_for_Ukraine 1s ease forwards;
+      &.dark_to_blackout {
+        animation: dark_to_blackout 1s ease forwards;
 
-        @keyframes dark_to_relevant_for_Ukraine {
+        @keyframes dark_to_blackout {
           0% {
             transform: translate(0px, 36px);
             width: 14px;
@@ -150,10 +150,10 @@
         }
       }
 
-      &.relevant_for_Ukraine_to_dark {
-        animation: relevant_for_Ukraine_to_dark 1s ease forwards;
+      &.blackout_to_dark {
+        animation: blackout_to_dark 1s ease forwards;
 
-        @keyframes relevant_for_Ukraine_to_dark {
+        @keyframes blackout_to_dark {
           0% {
             width: 14px;
             transform: translate(36px, 36px);
@@ -171,10 +171,10 @@
         }
       }
 
-      &.relevant_for_Ukraine_to_light {
-        animation: relevant_for_Ukraine_to_light 2s ease forwards;
+      &.blackout_to_light {
+        animation: blackout_to_light 2s ease forwards;
 
-        @keyframes relevant_for_Ukraine_to_light {
+        @keyframes blackout_to_light {
           0% {
             width: 14px;
             transform: translate(36px, 36px);
@@ -208,10 +208,10 @@
   }
 
   .dark-mode &,
-  .relevant_for_Ukraine-mode & {
+  .blackout-mode & {
     & .light_button,
     .dark_button,
-    .relevant_for_Ukraine_button,
+    .blackout_button,
     .switcher {
       border: 1px solid $white;
       background-color: $white;
