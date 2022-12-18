@@ -1,5 +1,5 @@
 import React from 'react'
-import { TypingText } from '../../components/TypingText';
+import { TypingText } from '../../components';
 import './Welcome.scss';
 
 export const Welcome = () => {

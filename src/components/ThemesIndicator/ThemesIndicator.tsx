@@ -2,13 +2,13 @@ import React, { useRef } from 'react';
 import './ThemesIndicator.scss';
 
 export const ThemesIndicator = (props: any) => {
-  const { theme } = props;
+  const { theme }: { theme: string } = props;
   const THEMES_ICONS = useRef([
     { name: 'sun', icon: 'icon-sun1' },
     { name: 'sun_void', icon: 'icon-sun' },
     { name: 'moon', icon: 'icon-moon' },
     { name: 'cloud', icon: 'icon-cloud' },
-  ]).current;
+  ] as const).current;
 
   return (
     <div className='themes_indicators'>

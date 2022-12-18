@@ -1,9 +1,7 @@
-import { useSelector } from 'react-redux';
-import { Tabs } from '../../../../components/Tabs';
-import { ThemeContext } from '../../../../components/ThemeContext';
-import { PortfolioCard } from '../../../../components/PortfolioCard';
+import { Tabs, ThemeContext, PortfolioCard } from '../../../../components';
 import { nanoid } from 'nanoid';
 import React, { Fragment, useContext, useRef } from 'react';
+import { useAppSelector } from '../../../../redux/hooks';
 import './Bottom.scss';
 
 export const Bottom = () => {
@@ -429,10 +427,13 @@ export const Bottom = () => {
       ],
     },
   }).current;
-  const language = useSelector((state: any) => state.languages.language);
+  const language = useAppSelector(
+    (state) => state.languages.language
+  );
   const { theme } = useContext(ThemeContext);
-  const isBlocked = useSelector(
-    (state: any) => state.portfolioCardsState.blocked
+
+  const isBlocked = useAppSelector(
+    (state) => state.portfolioCards.blocked
   );
 
   return (
@@ -508,7 +509,24 @@ export const Bottom = () => {
           </ul>
           <div className='portfolio'>
             {PORTFOLIO[language].data.map(
-              ({ id, name, img, link, description, languages }: {id: number | string, name: string, img: string, link: string, description: string, languages: string}, index: number) => (
+              (
+                {
+                  id,
+                  name,
+                  img,
+                  link,
+                  description,
+                  languages,
+                }: {
+                  id: number | string;
+                  name: string;
+                  img: string;
+                  link: string;
+                  description: string;
+                  languages: string;
+                },
+                index: number
+              ) => (
                 <PortfolioCard
                   key={id}
                   name={name}

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { ThemeContext, THEMES } from '../ThemeContext';
+import { ThemeContext, THEMES } from '../../components';
 import { clickHandler } from '../../utils';
 import './ThemeSwitcher.scss';
 
-export const ThemeSwitcher = () => {
+export const ThemeSwitcher = (): JSX.Element => {
   const { switchTheme, theme } = useContext(ThemeContext);
   const [prevTheme, setPrevTheme] = useState(theme);
 
@@ -16,7 +16,7 @@ export const ThemeSwitcher = () => {
     <div className='theme_toggle'>
       <div className='buttons_wrapper'>
         <div className={`switcher ${prevTheme}_to_${theme}`} />
-        {THEMES.map((themeName: string) => (
+        {THEMES.map((themeName) => (
           <button
             key={themeName}
             className={`${themeName}_button`}

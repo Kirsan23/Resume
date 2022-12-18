@@ -1,26 +1,24 @@
-import React, { createContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
-export const ThemeContext = createContext({theme: localStorage.getItem('theme'), switchTheme: (theme: string): void => {}});
+export const ThemeContext = createContext({
+  theme: localStorage.getItem('theme'),
+  switchTheme: (theme: string) => {}
+});
 
-export const LoginContext = createContext({ loggedIn: false, setLoggedIn: (loggedIn: false) => { } })
+export const THEMES = ['light', 'dark', 'blackout'] as const;
 
-export const THEMES: string[] = ['light', 'dark', 'blackout'];
-const setThemeInLocalStorage = (theme: string): void => {
+const setThemeInLocalStorage = (theme: string): void =>
   localStorage.setItem('theme', theme);
-};
 
 export const ThemeProvider = (props: any) => {
-  const [theme, setTheme] = useState(
+  const [theme, setTheme] = useState<string>(
     localStorage.getItem('theme') || THEMES[0]
   );
-  const { children } = props;
-  // const switchTheme = useCallback((theme: string): void => {
-  //   setTheme((prevState: any) => (prevState !== theme ? theme : prevState));
-  // }, []);
+  const { children }: { children: JSX.Element } = props;
 
-  const switchTheme = (theme: string) => {
-    setTheme((prevTheme: string) => (prevTheme !== theme ? theme : prevTheme))
-  }
+  const switchTheme = (theme: string): void => {
+    setTheme((prevTheme: string) => (prevTheme !== theme ? theme : prevTheme));
+  };
 
   useEffect(() => {
     setThemeInLocalStorage(theme);

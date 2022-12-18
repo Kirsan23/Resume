@@ -1,11 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { ThemeContext } from '../../../../components/ThemeContext';
-import { LanguageToggle } from '../../../../components/LanguageToggle';
-import { ThemeSwitcher } from '../../../../components/ThemeSwitcher';
+import { ThemeContext, LanguageToggle, ThemeSwitcher, ThemesIndicator } from '../../../../components';
 import './Top.scss';
-
-import { ThemesIndicator } from '../../../../components/ThemesIndicator'
 
 export const Top = () => {
   const CONTACTS: any = useRef([

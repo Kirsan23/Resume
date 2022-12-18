@@ -1,106 +1,117 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
-import { Modal } from '../Modal';
-import { blocked } from '../../redux/actions/portfolioCardBlocker';
-import { useDispatch } from 'react-redux';
 import { outsideClickHandler } from '../../utils';
 import { clickHandler } from '../../utils';
-import { FallingLetters } from '../FallingLetters';
-import { ThemeContext } from '../ThemeContext';
+import { ThemeContext, Modal, FallingLetters } from '../../components';
 import './PortfolioCard.scss';
 
-export const PortfolioCard = (props: any) => {
-  const { img, name, languages, link, description, index, length, isBlocked } = props;
+import { useAppDispatch } from '../../redux/hooks';
+import { blocked, unblocked } from '../../redux/slices/portfolioCardSlice';
 
-  const [focused, setFocused] = useState(false);
-  const [opened, setOpened] = useState(false);
+export const PortfolioCard = (props: any): JSX.Element => {
+  const {
+    img,
+    name,
+    languages,
+    link,
+    description,
+    index,
+    length,
+    isBlocked,
+  }: {
+    img: string;
+    name: string;
+    languages: string;
+    link: string;
+    description: string;
+    index: number;
+    length: number;
+    isBlocked: boolean;
+  } = props;
 
-  const ref = useRef(null);
-  const dispatch = useDispatch();
+  const [focused, setFocused] = useState<boolean>(false);
+  const [opened, setOpened] = useState<boolean>(false);
+
+  const ref = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
   const { theme } = useContext(ThemeContext);
 
-  const unfocus = () => setFocused(!focused);
-  const outsideClick = (event: any) => outsideClickHandler(ref, event, unfocus);
+  const unfocus = (): void => setFocused(!focused);
+  const outsideClick = (event: MouseEvent): void =>
+    outsideClickHandler(ref, event, unfocus);
   const insideClickHandler = () => {
     if (focused) return;
 
     setFocused(!focused);
-    dispatch(blocked(true, index));
+    dispatch(blocked(index));
   };
 
   useEffect(() => {
     if (focused) {
       document.addEventListener('click', outsideClick, true);
-      let timer = 0;
+      let timer: number = 0;
 
-      const timerId = setInterval(() => {
+      const timerId: NodeJS.Timer = setInterval(() => {
         if (timer === 2000) return () => clearInterval(timerId);
 
         timer += 10;
       }, 10);
 
-      dispatch(blocked(true, index));
+      dispatch(blocked(index));
 
       return () => {
         clearInterval(timerId);
         document.removeEventListener('click', outsideClick, true);
-        setTimeout(dispatch, timer, blocked(false, index));
+        setTimeout(dispatch, timer, unblocked());
       };
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focused]);
 
   return (
+    <div
+      ref={ref}
+      onClick={isBlocked ? undefined : () => insideClickHandler()}
+      className={`portfolio_card ${focused ? 'focused' : 'unfocused'} ${
+        isBlocked ? 'blocked' : 'unlocked'
+      } ${
+        index === 0 || !(index % 2) ? 'left_card' : 'right_card'
+      } ${theme}-mode`}
+    >
       <div
-        ref={ref}
-        onClick={isBlocked ? undefined : () => insideClickHandler()}
-        className={`portfolio_card ${focused ? 'focused' : 'unfocused'} ${
-          isBlocked ? 'blocked' : 'unlocked'
-        } ${
+        className={`description ${focused ? 'focused' : 'unfocused'} ${
           index === 0 || !(index % 2) ? 'left_card' : 'right_card'
-        } ${theme}-mode`}
+        } ${index === length - 1 ? 'last_card' : ''}`}
       >
-        <div
-          className={`description ${focused ? 'focused' : 'unfocused'} ${
-            index === 0 || !(index % 2) ? 'left_card' : 'right_card'
-          } ${index === length - 1? 'last_card' : ''}`}
+        <FallingLetters
+          activated={focused ? true : false}
+          delay={1000}
+          className='name'
         >
-          <FallingLetters
-            activated={focused ? true : false}
-            delay={1000}
-            className='name'
-          >
-            {name}
-          </FallingLetters>
-          <p className='languages'>{languages}</p>
-          <button className='about_button' onClick={() => setOpened(true)}>
-            About
-          </button>
-          <a className='link' href={link}>
-            Show on GitHub
-          </a>
-          <button
-            className='close_button'
-            onClick={() => clickHandler(unfocus, !focused)}
-          >
-            <span className='icon-arrow_back' />
-          </button>
-        </div>
-        <div className='main'>
-          <img src={img} className='main' alt='pet project' />
-        </div>
-        {opened && <Modal isOpen={opened} onClose={() => setOpened(false)}>
-          {description}
-        </Modal>}
+          {name}
+        </FallingLetters>
+        <p className='languages'>{languages}</p>
+        <button className='about_button' onClick={() => setOpened(true)}>
+          About
+        </button>
+        <a className='link' href={link}>
+          Show on GitHub
+        </a>
+        <button
+          className='close_button'
+          onClick={() => clickHandler(unfocus, !focused)}
+        >
+          <span className='icon-arrow_back' />
+        </button>
       </div>
+      <div className='main'>
+        <img src={img} className='main' alt='pet project' />
+      </div>
+      {opened && (
+        <Modal isOpen={opened} onClose={() => setOpened(false)}>
+          {description}
+        </Modal>
+      )}
+    </div>
   );
 };
-
-// PortfolioCard.propTypes = {
-//   name: PropTypes.string,
-//   img: PropTypes.string,
-//   languages: PropTypes.string,
-//   link: PropTypes.string,
-//   description: PropTypes.element,
-//   index: PropTypes.number,
-//   isBlocked: PropTypes.bool,
-// };

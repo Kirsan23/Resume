@@ -1,22 +1,18 @@
-import React from 'react'
-import { Top } from './containers/Top';
-import { Bottom } from './containers/Bottom';
-import { Additional } from './containers/Additional';
+import React from 'react';
+import { Top, Bottom, Additional } from './containers';
 import { useContext } from 'react';
-import { ThemeContext } from '../../components/ThemeContext';
-import { THEMES } from '../../components/ThemeContext';
-import { Overlay } from '../../components/Overlay';
+import { ThemeContext, THEMES, Overlay } from '../../components';
 import './Resume.scss';
 
 export const Resume = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <section className={`resume ${theme}-mode`}>
+    <div className={`resume ${theme}-mode`}>
       {theme === THEMES[2] && <Overlay />}
       <Top />
       <Additional />
       <Bottom />
-    </section>
+    </div>
   );
 };

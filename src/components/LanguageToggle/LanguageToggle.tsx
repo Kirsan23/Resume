@@ -1,21 +1,21 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { clickHandler } from '../../utils';
-import {
-  switchedToEng,
-  switchedToUa,
-} from '../../redux/actions/languageSwitcher';
 import './LanguageToggle.scss';
 
-export const LanguageToggle = () => {
-  const dispatch = useDispatch();
-  const language = useSelector((state: any) => state.languages.language);
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { ua, eng } from '../../redux/slices/languageSlice';
+
+export const LanguageToggle = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const language = useAppSelector(
+    (state) => state.languages.language
+  );
 
   const switchToEng = () => {
-    return dispatch(switchedToEng());
+    return dispatch(eng());
   };
   const switchToUa = () => {
-    return dispatch(switchedToUa());
+    return dispatch(ua());
   };
 
   return (

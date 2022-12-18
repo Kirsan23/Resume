@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Welcome } from './pages/Welcome';
-import { Resume } from './pages/Resume';
-import { ThemeProvider } from './components/ThemeContext';
+import { Welcome, Resume } from './pages';
+import { ThemeProvider } from './components/ThemeContext/ThemeContext';
 
 export const App = () => {
   return (

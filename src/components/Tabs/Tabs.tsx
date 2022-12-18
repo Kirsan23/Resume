@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useContext } from 'react';
-import { ThemeContext } from '../ThemeContext';
+import { ThemeContext } from '../../components';
 import './Tabs.scss';
 
 export const Tabs = (props: any) => {

@@ -1,8 +1,10 @@
 import React, { useRef, Fragment, useContext } from 'react';
 import { nanoid } from 'nanoid';
-import { useSelector } from 'react-redux';
-import { ThemeContext } from '../../../../components/ThemeContext';
+import { ThemeContext } from '../../../../components';
 import './Additional.scss';
+
+import { useAppSelector } from '../../../../redux/hooks';
+import { Languages } from '../../../../redux/slices/languageSlice';
 
 export const Additional = () => {
   const SKILLS: any = useRef({
@@ -106,7 +108,7 @@ export const Additional = () => {
     },
   }).current;
 
-  const language = useSelector((state: any) => state.languages.language);
+  const language: Languages = useAppSelector(state => state.languages.language);
   const { theme } = useContext(ThemeContext);
 
   return (

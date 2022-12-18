@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import './FallingLetters.scss';
 
 // TODO: try to rework (string + span for one char)
@@ -12,11 +11,18 @@ export const FallingLetters = (props: any) => {
     activated = true,
     delay = 0,
     reverse, // TODO: ADD THIS FUNC
+  }: {
+    children: string;
+    interval?: number;
+    className?: string;
+    activated?: boolean;
+    delay?: number;
+    reverse?: true;
   } = props;
-  const [started, setStarted] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [started, setStarted] = useState<boolean>(false);
+  const [index, setIndex] = useState<number>(0);
 
-  const arrayFromSting = Array.from(children);
+  const arrayFromSting: string[] = Array.from(children);
 
   if (activated) setTimeout(setStarted, delay, true);
   if (!activated && started) {
@@ -37,7 +43,7 @@ export const FallingLetters = (props: any) => {
 
   return (
     <div className={`falling_letters-wrapper`}>
-      {arrayFromSting.map((char: any, i: number) => (
+      {arrayFromSting.map((char: string, i: number) => (
         <span
           key={i}
           className={`${className} falling_letters ${
@@ -51,10 +57,3 @@ export const FallingLetters = (props: any) => {
     </div>
   );
 };
-
-// FallingLetters.propTypes = {
-//   activated: PropTypes.bool,
-//   interval: PropTypes.number,
-//   className: PropTypes.string,
-//   delay: PropTypes.number,
-// };
